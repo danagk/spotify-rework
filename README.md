@@ -14,8 +14,8 @@ With the influences of popular culture in our everyday lives, our domain of inte
 
 ### Data Driven Questions
 1. What cities are trendsetters or early adopters in music taste? Does this change across genres or years? How do they influence other cities?
-2. How do musical themes affect crime? Can we predict crime based on the type of music people (loudness, beats, pitches, etc) listen to?
-3. How do musical tastes/themes/lyrics change based on current events?
+2. How do musical themes affect crime? Can we predict crime based on the type of music people listen to? Which genre/theme/beats of music was popular in general when a crime has taken place?
+3. How do musical tastes/themes/lyrics change based on current events? eg. Which genre were popular in 2001 after 9/11 attacks?
 
 ## Dataset 1
 ### Where did you download the data?
