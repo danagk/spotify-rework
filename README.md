@@ -2,7 +2,7 @@
 
 ## Domain of Interest
 ### Our Interest
-Music trends
+Trends in Music
 ### Why are we interested in this domain?
 With the influences of popular culture in our everyday lives, our domain of interest is music. We are interested in the trends within music genres over time as well as where those trends originate from and how they influence social action. Using data from audio streaming platforms, such as Spotify, we hope to create meaningful visualizations of how trends in music develop, evolve, and invoke different behaviors.
 
@@ -14,7 +14,7 @@ With the influences of popular culture in our everyday lives, our domain of inte
 
 ### Data Driven Questions
 1. What cities are trendsetters or early adopters in music taste? Does this change across genres or years? How do they influence other cities?
-2. How do musical themes affect crime? Can we predict crime based on the type of music people listen to?
+2. How do musical themes affect crime? Can we predict crime based on the type of music people (loudness, beats, pitches, etc) listen to?
 3. How do musical tastes/themes/lyrics change based on current events?
 
 ## Dataset 1
