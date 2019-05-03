@@ -2,6 +2,8 @@
 
 ## Domain of Interest
 ### Our Interest
+Music trends
+### Reason why we are interested in this domain
 With the influences of popular culture in our everyday lives, our domain of interest is music. We are interested in the trends within music genres over time as well as where those trends originate from and how they influence social action. Using data from audio streaming platforms, such as Spotify, we hope to create meaningful visualizations of how trends in music develop, evolve, and invoke different behaviors.
 
 ### Other Examples of Data Driven Projects
