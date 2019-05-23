@@ -66,6 +66,7 @@ genre_bar_chart
 
 The information from the chart reveals that music categorized as "country" has the highest valence and "classical" music has the lowest valence. However, as we look at the ordering of the valence scores, it is not surprising the lowest scores are given to "classical", "metal", and "jazz" due to cultural characteristics that we know of these genres. For example, jazz music is a descendent of slave songs and 
 blues. From its history, a common theme in jazz music of the social, political, and economic hardships of African-Americans and the working class, as well as unrequited love ballads. 
+
 ### Histogram
 
 ```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
