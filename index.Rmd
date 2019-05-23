@@ -10,9 +10,16 @@ library("dplyr")
 library("ggplot2")
 library("spotifyr")
 library("knitr")
+
+# The Dataset
+songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE )%>%
+  # Filter genres that either do not have enough observations or we deemed
+  # as irrelevant genres
+  filter(genre != "A Capella" & genre != "Comedy" & 
+         genre != "Movie" & genre != "Soundtrack")
+
 source("scripts/api_keys.R")
 #source("scripts/table")
-source("scripts/summary_data_frame.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
 ```
@@ -35,10 +42,11 @@ genre_types <- get_summary_info(songs_df)$genres
 num_of_genres <- length(get_summary_info(songs_df)$genres)
 num_of_each_genre <- get_summary_info(songs_df)$num_of_each_genre
 ```
-The dataset has `r num_obs` observations and `r length` variables. These variables are the columns of the datasets, and the column names are `r col_names`
+The dataset has `r num_obs` observations and `r length` variables. These variables are the columns of the datasets, and the column names are `r col_names`.
 This particlar project is interested in understanding the variance of 
 different audio features across genres. Therefore, the different genres observed in
-the dataset are `r genre_types`. Lastly, notice how the dataset contains `r num_obs` and there are `r num_of_genres`. Therefore, it is right to assume that each genre has the same number of observations (100), which is expressed in the table below. 
+the dataset are `r genre_types`. Lastly, it is important to note that while the number of observations for the genres are similar, they are not equal. This is expressed in the table below. 
+
 ```{r summary_table2, warning = FALSE, message = FALSE, echo = FALSE}
 kable(num_of_each_genre)
 ```
@@ -64,8 +72,8 @@ Please note: Valence as described by the Spotify API is the postiveness of the s
 genre_bar_chart
 ```
 
-The information from the chart reveals that music categorized as "country" has the highest valence and "classical" music has the lowest valence. However, as we look at the ordering of the valence scores, it is not surprising the lowest scores are given to "classical", "metal", and "jazz" due to cultural characteristics that we know of these genres. For example, jazz music is a descendent of slave songs and 
-blues. From its history, a common theme in jazz music of the social, political, and economic hardships of African-Americans and the working class, as well as unrequited love ballads. 
+The information from the chart reveals that music categorized as "regge" has the highest valence and "opera" music has the lowest valence. As we look at the ordering of the valence scores, the placement of some genres is not completely surprising as our team can imagine the cultural characteristics associated with each genre. For example, operatic themes trend towards dishonor and suicide, unrequited love, death and pain, all accounting for the genre's low valence score. On the other hand, the chart reveals surprising findings such as how reggae has the highest valence score. This is strange since reggae music boasts musical themes such as social criticism and diaspora feelings, which are arguably negative topics. However, this leads us into further investigation, as the Spotify API does not state how valence is measured it is possible that factors other than lyrics contribute to the score. Therefore, we hope to examine how other features like speechiness, tempo, danceability, etc. contribute to valence, as well as examine how audio features vary across genres.  
+
 
 ### Histogram
 

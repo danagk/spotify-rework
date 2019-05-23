@@ -9,8 +9,6 @@ genre_bar_chart <- songs_df %>%
            fill = "#00CCCC") +
   coord_flip() + # Horizontal bar chart
   # title/axis labels
-  ggtitle("Average Valence per Genre
-          (based off Spotify list of 100 recommendations by genre)") +
+  ggtitle("Average Valence per Genre") +
   xlab("Genre") +
-  ylab("Average Valence") +
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+  ylab("Average Valence")

@@ -1,5 +1,4 @@
-# API Keys
-api_keys.R
+
 
 # History files
 .Rhistory
@@ -34,3 +33,6 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
+
+# Ignore Mac Files
+.DS_Store
