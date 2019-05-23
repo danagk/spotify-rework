@@ -1,0 +1,57 @@
+---
+title: "Spotify Exploration"
+author: "Julia Koh, Dana Korssjoen, Heeju Son, and Allison Wick"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(knitr)
+library(spotifyr)
+source("api_keys.R")
+source("scripts/table.R")
+source("scripts/summary.R")
+
+```
+
+## Introduction
+Our problem domain analyzes audio features and music genres and answers the questions: 
+
+- How do audio features vary across genres?
+- How do audio features vary across popular songs in different countries?
+
+The purpose of the project is to explore the differences of audio features between genres and across different countries. Using data from the audio streaming platform, Spotify, we have created a bar chart, histogram, and map of how these differences can be visualized. The source of our data comes from the `spotifyr` package.
+
+## Summary
+
+```{r summary_info, echo = FALSE}
+
+```
+
+## Table
+
+The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. `r popular` music is highest on the charts. `r tempo` music has the fastest average tempo. `r valence` music has the highest average valence. `r energy` music has the highest average energy. `r acoustic` music is the most acoustic on average. `r dance` music has the highest average danceability.
+
+```{r summary_table, echo = FALSE}
+summary_table <- get_table_info(songs_df)
+kable(summary_table)
+```
+
+## Chart 1
+
+```{r chart_one, echo = FALSE}
+
+```
+
+## Chart 2
+
+```{r chart_two, echo = FALSE}
+
+```
+
+##Chart 3
+
+```{r chart_three, echo = FALSE}
+
+```
