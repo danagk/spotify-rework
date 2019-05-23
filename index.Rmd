@@ -1,0 +1,79 @@
+---
+title: "Spotify Exploration"
+author: "Julia Koh, Dana Korssjoen, Heeju Son, and Allison Wick"
+output: html_document
+---
+
+```{r setup, warning = FALSE, include = FALSE, message = FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("dplyr")
+library("ggplot2")
+library("spotifyr")
+library("knitr")
+source("scripts/api_keys.R")
+#source("scripts/table")
+source("scripts/summary_data_frame.R")
+source("scripts/summary_info.R")
+source("scripts/bar_chart.R")
+```
+
+## Introduction
+Our problem domain analyzes audio features and music genres and answers the questions: 
+
+- How do audio features vary across genres?
+- How do audio features vary across popular songs in different countries?
+
+The purpose of the project is to explore the differences of audio features between genres and across different countries. Using data from the audio streaming platform, Spotify, we have created a bar chart, histogram, and map of how these differences can be visualized. The source of our data comes from the `spotifyr` package.
+
+## Summary
+
+```{r summary_info, warning = FALSE, include = FALSE, message = FALSE, echo = FALSE}
+length <- get_summary_info(songs_df)$length
+num_obs <- get_summary_info(songs_df)$num_obs
+col_names <- get_summary_info(songs_df)$col_names
+genre_types <- get_summary_info(songs_df)$genres
+num_of_genres <- length(get_summary_info(songs_df)$genres)
+num_of_each_genre <- get_summary_info(songs_df)$num_of_each_genre
+```
+The dataset has `r num_obs` observations and `r length` variables. These variables are the columns of the datasets, and the column names are `r col_names`
+This particlar project is interested in understanding the variance of 
+different audio features across genres. Therefore, the different genres observed in
+the dataset are `r genre_types`. Lastly, notice how the dataset contains `r num_obs` and there are `r num_of_genres`. Therefore, it is right to assume that each genre has the same number of observations (100), which is expressed in the table below. 
+```{r summary_table2, warning = FALSE, message = FALSE, echo = FALSE}
+kable(num_of_each_genre)
+```
+
+## Table
+
+The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. r popular music is highest on the charts. r tempo music has the fastest average tempo. r valence music has the highest average valence. r energy music has the highest average energy. r acoustic music is the most acoustic on average. r dance` music has the highest average danceability.
+
+```{r summary_table, warning = FALSE, message = FALSE, echo = FALSE}
+```
+
+## Charts
+### Bar Chart 
+The bar chart below attempts to express how the audio features of the chosen
+genres (designated in the summary information) vary from one another. In order to achieve this, the chart examines the audio feature of valence for  comparison across the genres was valence. The average valence was taken for each genre (i.e.
+the average valence of 100 songs for each genre), and is displayed from greatest 
+to least in the bar chart. Our intent for the final project is to be able to change
+the audio feature, from valence to another choice, based off user input.
+
+Please note: Valence as described by the Spotify API is the postiveness of the song (0 - extremely negative; 1 - highly positive).
+
+```{r chart_one,warning = FALSE, message = FALSE, echo = FALSE}
+genre_bar_chart
+```
+
+The information from the chart reveals that music categorized as "country" has the highest valence and "classical" music has the lowest valence. However, as we look at the ordering of the valence scores, it is not surprising the lowest scores are given to "classical", "metal", and "jazz" due to cultural characteristics that we know of these genres. For example, jazz music is a descendent of slave songs and 
+blues. From its history, a common theme in jazz music of the social, political, and economic hardships of African-Americans and the working class, as well as unrequited love ballads. 
+### Histogram
+
+```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
+
+```
+
+### Map
+
+```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
+
+```

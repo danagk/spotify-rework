@@ -1,7 +1,3 @@
-library("dplyr")
-library("ggplot2")
-source("main_data_frame.R")
-
 # Bar Chart -------------------------------------------------------------------
 genre_bar_chart <- songs_df %>%
   ggplot() +
