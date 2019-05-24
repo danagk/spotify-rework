@@ -72,24 +72,28 @@ acoustic <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Opera average acousticness
 opera_acoustic <- songs_df %>%
   group_by(genre) %>%
   summarize(acousticness = round(mean(acousticness), 2)) %>%
   filter(genre == "Opera") %>%
   pull(acousticness)
 
+# Classical average acousticness
 classical_acoustic <- songs_df %>%
   group_by(genre) %>%
   summarize(acousticness = round(mean(acousticness), 2)) %>%
   filter(genre == "Classical") %>%
   pull(acousticness)
 
+# Reggaeton average danceability
 reggaeton_dance <- songs_df %>%
   group_by(genre) %>%
   summarize(danceability = round(mean(danceability), 2)) %>%
   filter(genre == "Reggaeton") %>%
   pull(danceability)
 
+# Reggae average danceability
 reggae_dance <- songs_df %>%
   group_by(genre) %>%
   summarize(danceability = round(mean(danceability), 2)) %>%
