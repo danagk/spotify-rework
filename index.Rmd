@@ -26,7 +26,7 @@ source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
 source("scripts/histogram.R")
-#source("scripts/country_map.R")
+source("scripts/country_map.R")
 ```
 
 ## Introduction
@@ -103,5 +103,5 @@ The map attempts to visualize how the average valence of top 50 songs vary by co
 The chart is interactive; you can hover over each country to see its precise average valence score.
 
 ```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
-#country_map
+country_map
 ```
