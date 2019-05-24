@@ -85,8 +85,6 @@ The information from the chart reveals that music categorized as "regge" has the
 
 
 ### Histogram
-- How do audio features vary across genres?
-- How do audio features vary across popular songs in different countries?
 
 The histogram attempts to show what range a single feature of one genre is in. From this, we can learn the general trend of even the mean value of danceability feature in genre of opera. This is important to know since we can better understand the structure and trend of audio features across every genres only if we fully understand how a specific feature looks like in each genre.
 
