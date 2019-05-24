@@ -12,14 +12,12 @@ library("spotifyr")
 library("knitr")
 
 # The Dataset
-songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE )%>%
+songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE ) %>%
   # Filter genres that either do not have enough observations or we deemed
   # as irrelevant genres
   filter(genre != "A Capella" & genre != "Comedy" & 
          genre != "Movie" & genre != "Soundtrack")
-
-source("scripts/api_keys.R")
-#source("scripts/table")
+source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
 ```
@@ -56,6 +54,8 @@ kable(num_of_each_genre)
 The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. r popular music is highest on the charts. r tempo music has the fastest average tempo. r valence music has the highest average valence. r energy music has the highest average energy. r acoustic music is the most acoustic on average. r dance` music has the highest average danceability.
 
 ```{r summary_table, warning = FALSE, message = FALSE, echo = FALSE}
+summary_table <- get_table_info(songs_df)
+kable(summary_table)
 ```
 
 ## Charts

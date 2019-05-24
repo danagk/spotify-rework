@@ -1,6 +1,5 @@
 # Set up and source
 # How does popularity measure to different qualities of a song?
-
 get_table_info <- function(df) {
   songs_table <- songs_df %>%
     group_by(genre) %>%
