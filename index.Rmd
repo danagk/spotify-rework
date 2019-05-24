@@ -54,6 +54,8 @@ kable(num_of_each_genre)
 
 The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. `r popular` music is highest on the charts. `r tempo` music has the fastest average tempo. `r valence` music has the highest average valence. `r energy` music has the highest average energy. `r acoustic` music is the most acoustic on average. `r dance` music has the highest average danceability.
 
+Interestingly, the table shows trends across genres such as when popularity of a genre decreases acousticness tends to increase. For example, opera and classical music are two of the least popular genres and have average acousticness of `r opera_acoustic` and `r classical_acoustic`, respectively. In addition, reggaeton and reggae are not popular genres yet have the highest levels of danceability at `r reggaeton_dance` and `r reggae_dance`, respectively.
+
 ```{r summary_table, warning = FALSE, message = FALSE, echo = FALSE}
 summary_table <- get_table_info(songs_df)
 kable(summary_table)
