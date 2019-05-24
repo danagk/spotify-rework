@@ -5,13 +5,6 @@ library("dplyr")
 library("plotly")
 library("ggplot2")
 
-# read csv data with track info by country
-# set to reference data relative to *index.Rmd* location, not this file
-country_data <- read.csv(
-  file = "./data/country_data.csv", stringsAsFactors
-  = F
-)
-
 # group data by selected audio characteristic
 # in final version of report, this will be interactive
 # for now, it's hard-coded to display valence

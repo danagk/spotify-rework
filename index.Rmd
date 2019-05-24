@@ -12,12 +12,16 @@ library("spotifyr")
 library("knitr")
 library("plotly")
 
-# The Dataset
+# The Song Features Dataset
 songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE ) %>%
   # Filter genres that either do not have enough observations or we deemed
   # as irrelevant genres
   filter(genre != "A Capella" & genre != "Comedy" &
          genre != "Movie" & genre != "Soundtrack")
+# The Top 50 by Country Dataset
+country_data <- read.csv(file = "./data/country_data.csv", stringsAsFactors = F)
+
+# Source files
 source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
