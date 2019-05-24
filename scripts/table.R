@@ -1,4 +1,6 @@
 # Set up and source
+library(tidyverse)
+library(dplyr)
 # How does popularity measure to different qualities of a song?
 get_table_info <- function(df) {
   songs_table <- songs_df %>%
