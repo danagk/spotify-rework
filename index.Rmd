@@ -20,6 +20,7 @@ songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE ) %>%
 source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
+source("scripts/histogram.R")
 ```
 
 ## Introduction
@@ -78,7 +79,7 @@ The information from the chart reveals that music categorized as "regge" has the
 ### Histogram
 
 ```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
-
+histogram_opera
 ```
 
 ### Map
