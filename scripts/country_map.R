@@ -6,8 +6,9 @@ library("plotly")
 library("ggplot2")
 
 # read csv data with track info by country
+# set to reference data relative to *index.Rmd* location, not this file
 country_data <- read.csv(
-  file = "../data/country_data.csv", stringsAsFactors
+  file = "./data/country_data.csv", stringsAsFactors
   = F
 )
 
@@ -27,15 +28,16 @@ country_shape <- map_data("world", region = by_country$country) %>%
   merge(by_country, by = "country")
 
 # create map shaded according to selected characteristic (valence)
-country_map <- ggplot(country_shape) +
+country_map <- ggplot(country_shape, aes(text = paste0("country: ", country))) +
   geom_polygon(
     mapping = aes(x = long, y = lat, group = group, fill = valence),
     color = "white",
     size = .1
-  ) + coord_map(xlim = c(-175, -45), ylim = c(-10, 80))
+  ) +
+  coord_map(xlim = c(-175, -45), ylim = c(-10, 80))
 
 # make interactive with plotly
-test <- ggplotly(country_map) %>%
+country_map <- ggplotly(country_map) %>%
   layout(
     title = "Average Valence in Top 50 Songs",
     xaxis = list(title = ""),

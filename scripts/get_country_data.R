@@ -13,7 +13,7 @@ source("api-key.R")
 
 # create large data frame of all country's top 50 playlists
 # country playlists were added to the user account for this project
-playlists <- get_user_playlists('87ef2n9nxmaqpn38lsyh6hla3')
+playlists <- get_user_playlists("87ef2n9nxmaqpn38lsyh6hla3")
 
 # make dataframe of playlists
 playlists_df <- data_frame(
@@ -21,7 +21,7 @@ playlists_df <- data_frame(
   playlist_id = playlists$id)
 
 # make dataframe of tracks
-seq = 2:length(playlists_df$playlist_name)
+seq <- 2:length(playlists_df$playlist_name)
 
 tracks_df <- get_playlist_tracks(playlists_df$playlist_id[1]) %>%
   select(track.explicit, track.id, track.name, track.popularity)
@@ -33,12 +33,11 @@ for (i in seq) {
     select(track.explicit, track.id, track.name, track.popularity)
   tracks_temp <- tracks_temp %>%
     mutate(playlist_id = playlists_df$playlist_id[i])
-  
   tracks_df <- bind_rows(tracks_df, tracks_temp)
 }
 
 # make data frame of track audio features
-seq = 2:length(tracks_df$track.name)
+seq <- 2:length(tracks_df$track.name)
 
 track_info <- get_track_audio_features(tracks_df$track.id[1])
 track_info <- track_info %>%
@@ -48,7 +47,6 @@ for (i in seq) {
   track_info_temp <- get_track_audio_features(tracks_df$track.id[i])
   track_info_temp <- track_info_temp %>%
     mutate(track.id = tracks_df$track.id[i])
-  
   track_info <- bind_rows(track_info, track_info_temp)
 }
 
