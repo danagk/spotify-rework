@@ -32,7 +32,6 @@ country_map <- ggplot(country_shape, aes(text = paste0("country: ", country))) +
 # make interactive with plotly
 country_map <- ggplotly(country_map) %>%
   layout(
-    title = "Average Valence in Top 50 Songs",
     xaxis = list(title = ""),
     yaxis = list(title = ""),
     geo = list(
