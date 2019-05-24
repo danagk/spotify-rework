@@ -10,17 +10,19 @@ library("dplyr")
 library("ggplot2")
 library("spotifyr")
 library("knitr")
+library("plotly")
 
 # The Dataset
 songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE ) %>%
   # Filter genres that either do not have enough observations or we deemed
   # as irrelevant genres
-  filter(genre != "A Capella" & genre != "Comedy" & 
+  filter(genre != "A Capella" & genre != "Comedy" &
          genre != "Movie" & genre != "Soundtrack")
 source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
 source("scripts/histogram.R")
+source("scripts/country_map.R")
 ```
 
 ## Introduction
@@ -86,6 +88,10 @@ histogram_opera
 
 ### Map
 
-```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
+The map attempts to visualize how the average valence of top 50 songs vary by country. In other words, how positive does each country in North America prefer their music? As you can see in the map, Central American countries prefer their music to be highly positive, while valence gets lower (i.e. music gets less positive) as you go futher North. For the final project, we intend to add more countries to this chart and allow the characteristic that is visualized (in this case, valence) to be selected by the user from a list of musical characteristics.
 
+The chart is interactive; you can hover over each country to see its precise average valence score.
+
+```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
+country_map
 ```
