@@ -26,7 +26,7 @@ source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
 source("scripts/histogram.R")
-source("scripts/country_map.R")
+#source("scripts/country_map.R")
 ```
 
 ## Introduction
@@ -85,10 +85,16 @@ The information from the chart reveals that music categorized as "regge" has the
 
 
 ### Histogram
+- How do audio features vary across genres?
+- How do audio features vary across popular songs in different countries?
+
+The histogram attempts to show what range a single feature of one genre is in. From this, we can learn the general trend of even the mean value of danceability feature in genre of opera. This is important to know since we can better understand the structure and trend of audio features across every genres only if we fully understand how a specific feature looks like in each genre.
 
 ```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
 histogram_opera
 ```
+
+As you can see in the histogram chart, most of the danceability of opera goes within the range of 0.2-0.3. Also, since it is a slightly right-skewed histogram, we can also learn that the mean is greater than the median of daceability in opera.
 
 ### Map
 
@@ -97,5 +103,5 @@ The map attempts to visualize how the average valence of top 50 songs vary by co
 The chart is interactive; you can hover over each country to see its precise average valence score.
 
 ```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
-country_map
+#country_map
 ```
