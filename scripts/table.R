@@ -1,6 +1,8 @@
 # Set up and source
 library(tidyverse)
 library(dplyr)
+
+# Table function
 # How does popularity measure to different qualities of a song?
 get_table_info <- function(df) {
   songs_table <- songs_df %>%
@@ -22,6 +24,7 @@ get_table_info <- function(df) {
   return(songs_table)
 }
 
+# Genre with most danceability
 dance <- songs_df %>%
   group_by(genre) %>%
   summarize(danceability = round(mean(danceability), 2)) %>%
@@ -29,6 +32,7 @@ dance <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Most popular genre
 popular <- songs_df %>%
   group_by(genre) %>%
   summarize(popularity = round(mean(popularity), 0)) %>%
@@ -36,6 +40,7 @@ popular <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Genre with fastest tempo
 tempo <- songs_df %>%
   group_by(genre) %>%
   summarize(tempo = round(mean(tempo), 2)) %>%
@@ -43,6 +48,7 @@ tempo <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Genre with most valence
 valence <- songs_df %>%
   group_by(genre) %>%
   summarize(valence = round(mean(valence), 2)) %>%
@@ -50,6 +56,7 @@ valence <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Most energized genre
 energy <- songs_df %>%
   group_by(genre) %>%
   summarize(energy = round(mean(energy), 2)) %>%
@@ -57,9 +64,34 @@ energy <- songs_df %>%
   head(1) %>%
   pull(genre)
 
+# Most acoustic genre
 acoustic <- songs_df %>%
   group_by(genre) %>%
   summarize(acousticness = round(mean(acousticness), 2)) %>%
   arrange(-acousticness) %>%
   head(1) %>%
   pull(genre)
+
+opera_acoustic <- songs_df %>%
+  group_by(genre) %>%
+  summarize(acousticness = round(mean(acousticness), 2)) %>%
+  filter(genre == "Opera") %>%
+  pull(acousticness)
+
+classical_acoustic <- songs_df %>%
+  group_by(genre) %>%
+  summarize(acousticness = round(mean(acousticness), 2)) %>%
+  filter(genre == "Classical") %>%
+  pull(acousticness)
+
+reggaeton_dance <- songs_df %>%
+  group_by(genre) %>%
+  summarize(danceability = round(mean(danceability), 2)) %>%
+  filter(genre == "Reggaeton") %>%
+  pull(danceability)
+
+reggae_dance <- songs_df %>%
+  group_by(genre) %>%
+  summarize(danceability = round(mean(danceability), 2)) %>%
+  filter(genre == "Reggae") %>%
+  pull(danceability)
