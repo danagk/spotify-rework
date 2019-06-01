@@ -10,16 +10,23 @@ library("dplyr")
 library("ggplot2")
 library("spotifyr")
 library("knitr")
+library("plotly")
 
-# The Dataset
+# The Song Features Dataset
 songs_df <- read.csv("data/SpotifyFeatures.csv", stringsAsFactors = FALSE ) %>%
   # Filter genres that either do not have enough observations or we deemed
   # as irrelevant genres
-  filter(genre != "A Capella" & genre != "Comedy" & 
+  filter(genre != "A Capella" & genre != "Comedy" &
          genre != "Movie" & genre != "Soundtrack")
+# The Top 50 by Country Dataset
+country_data <- read.csv(file = "./data/country_data.csv", stringsAsFactors = F)
+
+# Source files
 source("scripts/table.R")
 source("scripts/summary_info.R")
 source("scripts/bar_chart.R")
+source("scripts/histogram.R")
+source("scripts/country_map.R")
 ```
 
 ## Introduction
@@ -51,7 +58,9 @@ kable(num_of_each_genre)
 
 ## Table
 
-The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. r popular music is highest on the charts. r tempo music has the fastest average tempo. r valence music has the highest average valence. r energy music has the highest average energy. r acoustic music is the most acoustic on average. r dance` music has the highest average danceability.
+The following table shows the average danceability, energy, valence, acousticness, and tempo based on **music genre**. The table is ordered by which genre has the highest average _popularity ratings_ on a scale from 0-100. `r popular` music is highest on the charts. `r tempo` music has the fastest average tempo. `r valence` music has the highest average valence. `r energy` music has the highest average energy. `r acoustic` music is the most acoustic on average. `r dance` music has the highest average danceability.
+
+Interestingly, the table shows trends across genres such as when popularity of a genre decreases acousticness tends to increase. For example, opera and classical music are two of the least popular genres and have average acousticness of `r opera_acoustic` and `r classical_acoustic`, respectively. In addition, reggaeton and reggae are not popular genres yet have the highest levels of danceability at `r reggaeton_dance` and `r reggae_dance`, respectively.
 
 ```{r summary_table, warning = FALSE, message = FALSE, echo = FALSE}
 summary_table <- get_table_info(songs_df)
@@ -77,12 +86,20 @@ The information from the chart reveals that music categorized as "regge" has the
 
 ### Histogram
 
-```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
+The histogram attempts to show what range a single feature of one genre is in. From this, we can learn the general trend of even the mean value of danceability feature in genre of opera. This is important to know since we can better understand the structure and trend of audio features across every genres only if we fully understand how a specific feature looks like in each genre.
 
+```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
+histogram_opera
 ```
+
+As you can see in the histogram chart, most of the danceability of opera goes within the range of 0.2-0.3. Also, since it is a slightly right-skewed histogram, we can also learn that the mean is greater than the median of daceability in opera.
 
 ### Map
 
-```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
+The map attempts to visualize how the average valence of top 50 songs vary by country. In other words, how positive does each country in North America prefer their music? As you can see in the map, Central American countries prefer their music to be highly positive, while valence gets lower (i.e. music gets less positive) as you go futher North. For the final project, we intend to add more countries to this chart and allow the characteristic that is visualized (in this case, valence) to be selected by the user from a list of musical characteristics.
 
+The chart is interactive; you can hover over each country to see its precise average valence score.
+
+```{r chart_three, warning = FALSE, message = FALSE, echo = FALSE}
+country_map
 ```
