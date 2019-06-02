@@ -27,6 +27,7 @@ server <- function(input, output) {
   output$histogram <- renderPlotly({
     #storeWarn<- getOption("warn")
     #options(warn = -1) 
+    #https://stackoverflow.com/questions/45499460/selectinput-and-reactive-plotly-bar-chart-in-shiny
     plot_ly(songs_df, x = ~input$feature) %>%
       add_histogram()
     filtered <- songs_df %>%
@@ -43,14 +44,6 @@ server <- function(input, output) {
   # Next Chart
 }
 
-#https://stackoverflow.com/questions/45499460/selectinput-and-reactive-plotly-bar-chart-in-shiny
 
-abc <- songs_df %>%
-  select(genre, "danceability")
-
-d <- melt(abc, id.vars="danceability") %>%
-  plot_ly(alpha = 0.5, colors = "Set2") %>%
-  add_histogram(x = ~danceability, type = 'histogram', name = ~value) %>%
-  layout(yaxis = list(title = 'Count'), barmode = 'overlay')
 
 
