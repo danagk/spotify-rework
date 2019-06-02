@@ -1,6 +1,8 @@
 # Load libraries so they are available
 library(shiny)
 library(ggplot2)
+library(plotly)
+library(reshape2)
 
 # Create a shiny server
 server <- function(input, output) {
@@ -21,9 +23,34 @@ server <- function(input, output) {
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
   genre_bar_chart
   })
-  
   # Next Chart
-  
+  output$histogram <- renderPlotly({
+    #storeWarn<- getOption("warn")
+    #options(warn = -1) 
+    plot_ly(songs_df, x = ~input$feature) %>%
+      add_histogram()
+    filtered <- songs_df %>%
+      select(genre, input$feature)
+    histogram_chart <- melt(filtered, id.vars = input$feature) %>%
+      plot_ly(alpha = 0.5, colors = "Set2") %>%
+      add_histogram(x = ~get(input$feature), type = 'histogram', name = ~value, color = ~value) %>%
+      layout(title = "Histogram of Features in each Genre", 
+             xaxis = list(title = "Feature"),
+             yaxis = list(title = "Count"),
+             barmode = "overlay")
+    histogram_chart
+  })
   # Next Chart
 }
+
+#https://stackoverflow.com/questions/45499460/selectinput-and-reactive-plotly-bar-chart-in-shiny
+
+abc <- songs_df %>%
+  select(genre, "danceability")
+
+d <- melt(abc, id.vars="danceability") %>%
+  plot_ly(alpha = 0.5, colors = "Set2") %>%
+  add_histogram(x = ~danceability, type = 'histogram', name = ~value) %>%
+  layout(yaxis = list(title = 'Count'), barmode = 'overlay')
+
 

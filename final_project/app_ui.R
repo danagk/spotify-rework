@@ -30,8 +30,31 @@ page_one <- tabPanel(
   )
 )
 
+page_two <- tabPanel(
+  "Musical Features Histogram", # label for the tab in the navbar
+  # show a displayed title
+  titlePanel("??"),
+  p("An exploration .."),
+  # This content uses a sidebar layout
+  sidebarLayout(
+    sidebarPanel( 
+      # Create a variable `features` that stores a `selectInput()`
+      # for your variable to appear on the y axis of your chart.
+      selectInput(
+        inputId = "feature",
+        label = "feature",
+        choices = select_values_bar, # available choices
+      )
+    ),
+    mainPanel( # Main panel with chart
+      plotlyOutput("histogram")
+    )
+  )
+)
+
 # Pass each page to a multi-page layout (`navbarPage`)
 ui <- navbarPage(
   "Musical Genre Exploration", # application title
-  page_one         # include the first page content
+  page_one,         # include the first page content
+  page_two
 )
