@@ -75,7 +75,7 @@ server <- function(input, output) {
       coord_map(xlim = c(-175, -45), ylim = c(-10, 80))
     
     # make interactive with plotly
-    country_map <- ggplotly(country_map) %>%
+    country_map <- ggplotly(country_map, tooltip = "text") %>%
       layout(
         xaxis = list(title = ""),
         yaxis = list(title = ""),
