@@ -57,6 +57,7 @@ page_two <- tabPanel(
 page_three <- tabPanel(
   "Musical Features Map", # label for the tab in the navbar
   titlePanel("Features Map"),
+  p("An exploration into the average of popular music features by country."),
   sidebarLayout(
     sidebarPanel(
       selectInput( # select musical feature to map
