@@ -2,11 +2,13 @@
 # music tastes in each country of North America
 
 build_map <- function(df,feature) {
+  feature <- sym(feature) # this fix does not work
   
   # group data by selected audio feature
-  by_country <- country_data %>%
+  by_country <- df %>%
     group_by(country = playlist_name) %>%
-    summarise(valence = mean(feature))
+    summarise(feature = mean(feature)) # error: evaluated as string instead of var name
+  # I will fix this part
   
   # set country names to match for merge
   by_country$country[by_country$country == "United States"] <- "USA"

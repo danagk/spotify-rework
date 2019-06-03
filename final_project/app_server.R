@@ -4,6 +4,9 @@ library(ggplot2)
 library(plotly)
 library(reshape2)
 
+# Load function source file
+source("./build_map.R")
+
 # Create a shiny server
 server <- function(input, output) {
   # Create and render a bar plot that uses the relevant y inputs (Julia)
