@@ -46,7 +46,49 @@ server <- function(input, output) {
   })
   # create and render an interactive map of pop music tastes in each country
   output$map <- renderPlotly({
-    return(build_map(country_data,input$map_feature))
+    ### edit note:
+    # I will fix legend and tooltip manually
+    
+    feature <- rlang::sym(input$map_feature) # treat string input as symbol
+    
+    # group data by selected audio feature
+    by_country <- country_data %>%
+      group_by(country = playlist_name) %>%
+      summarise(feature = mean(!!feature))
+    
+    # set country names to match for merge
+    by_country$country[by_country$country == "United States"] <- "USA"
+    
+    # join this df to shapefile
+    country_shape <- map_data("world", region = by_country$country) %>%
+      rename(country = region) %>%
+      merge(by_country, by = "country")
+    
+    # create map shaded according to selected feature
+    country_map <- ggplot(country_shape, aes(text = paste0("country: ", country,
+                           "\n",input$map_feature, ": ", feature))) +
+      geom_polygon(
+        mapping = aes(x = long, y = lat, group = group, fill = feature),
+        color = "white",
+        size = .1
+      ) +
+      coord_map(xlim = c(-175, -45), ylim = c(-10, 80))
+    
+    # make interactive with plotly
+    country_map <- ggplotly(country_map) %>%
+      layout(
+        xaxis = list(title = ""),
+        yaxis = list(title = ""),
+        title = paste0(feature, " by Country"),
+        geo = list(
+          scope = "north america",
+          lonaxis = list(range = c(-175, -45)),
+          lataxis = list(range = c(-10, 80))
+        ),
+        margin = list(b = 50, t = 60)
+      )
+    country_map
+    
   })
 }
 

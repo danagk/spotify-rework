@@ -1,7 +1,8 @@
 # this file defines a function to create a regional map, shaded according to
 # music tastes in each country of North America
 
-#### edit note: the hovertext is formatted incorrectly - I will fix
+#### edit note: this file is no longer necessary. I'm keeping it as a model
+#### while I edit, but will delete later
 
 build_map <- function(df,feature) {
   feature <- rlang::sym(feature) # treat string input as symbol
@@ -38,7 +39,8 @@ build_map <- function(df,feature) {
         scope = "north america",
         lonaxis = list(range = c(-175, -45)),
         lataxis = list(range = c(-10, 80))
-      )
+      ),
+      margin = list(b = 50, t = 60)
     )
   return(country_map)
 }
