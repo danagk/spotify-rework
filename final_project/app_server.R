@@ -46,9 +46,6 @@ server <- function(input, output) {
   })
   # create and render an interactive map of pop music tastes in each country
   output$map <- renderPlotly({
-    ### edit note:
-    # I will fix legend and tooltip manually
-    
     feature <- rlang::sym(input$map_feature) # treat string input as symbol
     
     # group data by selected audio feature
@@ -72,7 +69,8 @@ server <- function(input, output) {
         color = "white",
         size = .1
       ) +
-      coord_map(xlim = c(-175, -45), ylim = c(-10, 80))
+      coord_map(xlim = c(-175, -45), ylim = c(-10, 80)) +
+      labs(fill = input$map_feature)
     
     # make interactive with plotly
     country_map <- ggplotly(country_map, tooltip = "text") %>%
