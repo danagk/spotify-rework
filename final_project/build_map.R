@@ -1,14 +1,15 @@
 # this file defines a function to create a regional map, shaded according to
 # music tastes in each country of North America
 
+#### edit note: the hovertext is formatted incorrectly - I will fix
+
 build_map <- function(df,feature) {
-  feature <- sym(feature) # this fix does not work
+  feature <- rlang::sym(feature) # treat string input as symbol
   
   # group data by selected audio feature
   by_country <- df %>%
     group_by(country = playlist_name) %>%
-    summarise(feature = mean(feature)) # error: evaluated as string instead of var name
-  # I will fix this part
+    summarise(feature = mean(!!feature))
   
   # set country names to match for merge
   by_country$country[by_country$country == "United States"] <- "USA"
