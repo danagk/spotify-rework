@@ -6,6 +6,7 @@ library(tidyr)
 library(plotly)
 
 select_values_bar <- colnames(songs_df[, c(5:10, 12, 13, 15, 16, 18)])
+select_bar_country <- colnames(country_data[,c(6:7,12:16)])
   
 # Define content for the first page (Julia)
 page_one <- tabPanel(
@@ -44,7 +45,7 @@ page_two <- tabPanel(
       selectInput(
         inputId = "feature",
         label = "feature",
-        choices = select_values_bar, # available choices
+        choices = select_values_bar # available choices
       )
     ),
     mainPanel( # Main panel with chart
@@ -61,11 +62,7 @@ page_three <- tabPanel(
       selectInput( # select musical feature to map
         "map_feature",
         label = "Musical Feature to Map",
-        choices = list( # I will add more choices later
-          "Valence" = "valence",
-          "Energy" = "energy",
-          "Tempo" = "tempo"
-        )
+        choices = select_bar_country
       )
     ),
     mainPanel( # output map in main panel
