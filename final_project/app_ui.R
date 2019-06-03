@@ -3,6 +3,7 @@ library(shiny)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
+library(plotly)
 
 select_values_bar <- colnames(songs_df[, c(5:10, 12, 13, 15, 16, 18)])
   

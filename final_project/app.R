@@ -2,6 +2,7 @@
 source("../data/dataframe.R")
 source("../data/country_data.R")
 library("shiny")
+library("dplyr")
 source("app_ui.R")
 source("app_server.R")
 
