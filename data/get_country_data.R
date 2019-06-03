@@ -1,9 +1,9 @@
 # NOTE: DO NOT RUN THIS SCRIPT. It will take a long time and your computer will
 #   get hot. Also, you'll need an API key saved in 'api-key.R'
 
-# The dataframe this script creates is saved as 'country_data.csv' in ../data.
+# The dataframe this script creates is saved as 'country_data.csv' in ./data.
 # It contains information on audio features of each top 50 song in every
-#   North/Central American country.
+#   country in which Spotify is available.
 # This script is here to recreate the dataframe if needed.
 
 # you need an (ignored) api-key.R file to access to Spotify API
@@ -58,4 +58,4 @@ country_data <- merge(tracks_df, info_test, by = "track.id")
 country_data <- merge(country_data, playlists_df, by = "playlist_id")
 
 # write to csv
-write.csv(country_data, file = "../data/country_data.csv", row.names = F)
+write.csv(country_data, file = "./data/country_data.csv", row.names = F)
