@@ -1,5 +1,6 @@
 # Load libraries so they are available
 source("../data/dataframe.R")
+source("../data/country_data.R")
 library("shiny")
 source("app_ui.R")
 source("app_server.R")

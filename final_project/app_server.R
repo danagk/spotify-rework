@@ -41,7 +41,10 @@ server <- function(input, output) {
              barmode = "overlay")
     histogram_chart
   })
-  # Next Chart
+  # create and render an interactive map of pop music tastes in each country
+  output$map <- renderPlotly({
+    return(build_map(country_data,input$map_feature))
+  })
 }
 
 

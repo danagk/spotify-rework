@@ -52,9 +52,31 @@ page_two <- tabPanel(
   )
 )
 
+page_three <- tabPanel(
+  "Musical Features Map", # label for the tab in the navbar
+  titlePanel("Features Map"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput( # select musical feature to map
+        "map_feature",
+        label = "Musical Feature to Map",
+        choices = list( # I will add more choices later
+          "Valence" = "valence",
+          "Energy" = "energy",
+          "Tempo" = "tempo"
+        )
+      )
+    ),
+    mainPanel( # output map in main panel
+      plotlyOutput("map")
+    )
+  )
+)
+
 # Pass each page to a multi-page layout (`navbarPage`)
 ui <- navbarPage(
   "Musical Genre Exploration", # application title
   page_one,         # include the first page content
-  page_two
+  page_two,
+  page_three
 )
