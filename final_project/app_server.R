@@ -4,9 +4,6 @@ library(ggplot2)
 library(plotly)
 library(reshape2)
 
-# Load function source file
-source("./build_map.R")
-
 # Create a shiny server
 server <- function(input, output) {
   # Create and render a bar plot that uses the relevant y inputs (Julia)
@@ -69,7 +66,7 @@ server <- function(input, output) {
         color = "white",
         size = .1
       ) +
-      coord_map(xlim = c(-175, -45), ylim = c(-10, 80)) +
+      coord_map(xlim = c(-175, 40), ylim = c(-35, 70)) +
       labs(fill = input$map_feature)
     
     # make interactive with plotly
@@ -78,11 +75,6 @@ server <- function(input, output) {
         xaxis = list(title = ""),
         yaxis = list(title = ""),
         title = paste0(feature, " by Country"),
-        geo = list(
-          scope = "north america",
-          lonaxis = list(range = c(-175, -45)),
-          lataxis = list(range = c(-10, 80))
-        ),
         margin = list(b = 50, t = 60)
       )
     country_map
