@@ -7,7 +7,32 @@ library(plotly)
 
 select_values_bar <- colnames(songs_df[, c(5:10, 12, 13, 15, 16, 18)])
 select_bar_country <- colnames(country_data[,c(6:7,12:16)])
-  
+
+# Create overview page content
+overview <- fluidPage(
+  h1(strong("A Spotify Exploration")),
+  p("The purpose of the project is to explore and analyze the trends in music 
+    found from Spotify data. The questions that structured our project include,",
+    em("how audio features such as valence or danceability vary across genres,
+       the popularity across genres, and how audio features of popular music differs
+       between different countries"), ". The source of our data comes from",
+    a(href = "https://cran.r-project.org/web/packages/spotifyr/spotifyr.pdf",
+      "the Spotifyr package in R"), " and ",
+    a(href = "https://developer.spotify.com/documentation/web-api/",
+      "the Spotify Web API."),
+    "Our interactive pages include a Bar Plot, a Histogram, and a Map that display musical features
+    by genre or country."),
+  # Retrieved from Pinterest 
+  img("", src = "https://i.pinimg.com/474x/c7/59/2d/c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg"
+  )
+    )
+
+# Define overview panel
+overview_panel <- tabPanel(
+  "Overview",
+  overview
+)
+
 # Define content for the first page (Julia)
 page_one <- tabPanel(
   "Musical Features Bar Plot", # label for the tab in the navbar
@@ -35,8 +60,8 @@ page_one <- tabPanel(
 page_two <- tabPanel(
   "Musical Features Histogram", # label for the tab in the navbar
   # show a displayed title
-  titlePanel("??"),
-  p("An exploration .."),
+  titlePanel("Comparisons between every genre on each music feature"),
+  p("An exploration into range of each music feature for all genre."),
   # This content uses a sidebar layout
   sidebarLayout(
     sidebarPanel( 
@@ -72,10 +97,22 @@ page_three <- tabPanel(
   )
 )
 
+summary <- fluidPage(
+  h1(strong("Summary Takeaways")),
+  p("Summary from pages")
+    )
+
+summary_panel <- tabPanel(
+  "Summary Information",
+  summary
+)
+
 # Pass each page to a multi-page layout (`navbarPage`)
 ui <- navbarPage(
   "Musical Genre Exploration", # application title
+  overview_panel,
   page_one,         # include the first page content
   page_two,
-  page_three
+  page_three,
+  summary_panel
 )
