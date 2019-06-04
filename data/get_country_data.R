@@ -9,11 +9,11 @@
 # you need an (ignored) api-key.R file to access to Spotify API
 library("spotifyr")
 library("dplyr")
-source("api-key.R")
+source("../scripts/api-key.R")
 
 # create large data frame of all country's top 50 playlists
 # country playlists were added to the user account for this project
-playlists <- get_user_playlists("87ef2n9nxmaqpn38lsyh6hla3")
+playlists <- get_user_playlists("87ef2n9nxmaqpn38lsyh6hla3", limit = 50)
 
 # make dataframe of playlists
 playlists_df <- data_frame(
@@ -54,8 +54,8 @@ for (i in seq) {
 track_info <- distinct(track_info)
 
 # join into one large dataframe
-country_data <- merge(tracks_df, info_test, by = "track.id")
+country_data <- merge(tracks_df, track_info, by = "track.id")
 country_data <- merge(country_data, playlists_df, by = "playlist_id")
 
 # write to csv
-write.csv(country_data, file = "./data/country_data.csv", row.names = F)
+write.csv(country_data, file = "./country_data.csv", row.names = F)
