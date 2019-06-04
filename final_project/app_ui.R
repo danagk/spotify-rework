@@ -91,12 +91,13 @@ page_three <- tabPanel(
         choices = select_bar_country
       )
     ),
-    mainPanel( # output map in main panel
+    mainPanel( # output map and description in main panel
       p("This map displays the average value for the selected feature across
-         the top 50 most popular songs for each country, as of May 2019. Each
-        country outline is shaded according to that value. Note that data is
-        only available for countries in which Spotify is available, so our data
-        excludes Venezuela, Suriname, Guyana, and French Guiana."),
+         the top 50 most popular songs for each country in the Americas, as of
+         May 2019. Each country outline is shaded according to that value. Note
+         that data is only available for countries in which Spotify is
+         available, so our data excludes Venezuela, Suriname, Guyana, and French
+         Guiana."),
       plotlyOutput("map")
     )
   )
