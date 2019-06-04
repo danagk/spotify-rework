@@ -42,6 +42,7 @@ server <- function(input, output) {
     histogram_chart
   })
   # create and render an interactive map of pop music tastes in each country
+  # TO DO LIST: change color scheme & edit scaling (so map doesn't look warped)
   output$map <- renderPlotly({
     feature <- rlang::sym(input$map_feature) # treat string input as symbol
     
