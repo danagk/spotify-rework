@@ -86,9 +86,13 @@ The information from the chart reveals that music categorized as "regge" has the
 
 ### Histogram
 
+The histogram attempts to show what range a single feature of one genre is in. From this, we can learn the general trend of even the mean value of danceability feature in genre of opera. This is important to know since we can better understand the structure and trend of audio features across every genres only if we fully understand how a specific feature looks like in each genre.
+
 ```{r chart_two, warning = FALSE, message = FALSE, echo = FALSE}
 histogram_opera
 ```
+
+As you can see in the histogram chart, most of the danceability of opera goes within the range of 0.2-0.3. Also, since it is a slightly right-skewed histogram, we can also learn that the mean is greater than the median of daceability in opera.
 
 ### Map
 

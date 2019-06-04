@@ -36,3 +36,6 @@ vignettes/*.pdf
 
 # Ignore Mac Files
 .DS_Store
+
+# Ignore API key
+scripts/api-key.R
