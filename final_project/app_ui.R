@@ -35,8 +35,8 @@ page_one <- tabPanel(
 page_two <- tabPanel(
   "Musical Features Histogram", # label for the tab in the navbar
   # show a displayed title
-  titlePanel("??"),
-  p("An exploration .."),
+  titlePanel("Comparisons between every genre on each music feature"),
+  p("An exploration into range of each music feature for all genre."),
   # This content uses a sidebar layout
   sidebarLayout(
     sidebarPanel( 
