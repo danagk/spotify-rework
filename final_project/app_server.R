@@ -86,6 +86,5 @@ server <- function(input, output) {
         margin = list(b = 50, t = 60)
       )
     country_map
-    
   })
 }

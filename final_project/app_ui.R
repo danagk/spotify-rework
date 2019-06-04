@@ -97,11 +97,22 @@ page_three <- tabPanel(
   )
 )
 
+summary <- fluidPage(
+  h1(strong("Summary Takeaways")),
+  p("Summary from pages")
+    )
+
+summary_panel <- tabPanel(
+  "Summary Information",
+  summary
+)
+
 # Pass each page to a multi-page layout (`navbarPage`)
 ui <- navbarPage(
   "Musical Genre Exploration", # application title
   overview_panel,
   page_one,         # include the first page content
   page_two,
-  page_three
+  page_three,
+  summary_panel
 )
