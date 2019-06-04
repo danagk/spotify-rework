@@ -6,26 +6,27 @@ library(tidyr)
 library(plotly)
 
 select_values_bar <- colnames(songs_df[, c(5:10, 12, 13, 15, 16, 18)])
-select_bar_country <- colnames(country_data[,c(6:7,12:16)])
+select_bar_country <- colnames(country_data[, c(6:7, 12:16)])
 
 # Create overview page content
 overview <- fluidPage(
   h1(strong("A Spotify Exploration")),
-  p("The purpose of the project is to explore and analyze the trends in music 
-    found from Spotify data. The questions that structured our project include,",
-    em("how audio features such as valence or danceability vary across genres,
-       the popularity across genres, and how audio features of popular music differs
-       between different countries"), ". The source of our data comes from",
-    a(href = "https://cran.r-project.org/web/packages/spotifyr/spotifyr.pdf",
+  p("The purpose of the project is to explore and analyze the trends in music
+  found from Spotify data. The questions that structured our project include,",
+  em("how audio features such as valence or danceability vary across genres,
+  the popularity across genres, and how audio features of popular music differs
+  between different countries"), ". The source of our data comes from",
+  a(href = "https://cran.r-project.org/web/packages/spotifyr/spotifyr.pdf",
       "the Spotifyr package in R"), " and ",
-    a(href = "https://developer.spotify.com/documentation/web-api/",
+  a(href = "https://developer.spotify.com/documentation/web-api/",
       "the Spotify Web API."),
-    "Our interactive pages include a Bar Plot, a Histogram, and a Map that display musical features
-    by genre or country."),
-  # Retrieved from Pinterest 
-  img("", src = "https://i.pinimg.com/474x/c7/59/2d/c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg"
+  "Our interactive pages include a Bar Plot, a Histogram,
+   and a Map that display musical features
+   by genre or country."),
+  # Retrieved from Pinterest
+  img("", src = paste0("https://i.pinimg.com/474x/c7/59/2d/",
+     "c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg"))
   )
-    )
 
 # Define overview panel
 overview_panel <- tabPanel(
@@ -41,7 +42,7 @@ page_one <- tabPanel(
   p("An exploration into the average of various musical features by genre."),
   # This content uses a sidebar layout
   sidebarLayout(
-    sidebarPanel( 
+    sidebarPanel(
       # Create a variable `y_var_bar` that stores a `selectInput()`
       # for your variable to appear on the y axis of your chart.
       y_input <- selectInput(
@@ -52,7 +53,7 @@ page_one <- tabPanel(
       )
     ),
     mainPanel( # Main panel with chart
-      plotOutput("bar")
+      plotlyOutput("bar")
     )
   )
 )
@@ -64,7 +65,7 @@ page_two <- tabPanel(
   p("An exploration into range of each music feature for all genre."),
   # This content uses a sidebar layout
   sidebarLayout(
-    sidebarPanel( 
+    sidebarPanel(
       # Create a variable `features` that stores a `selectInput()`
       # for your variable to appear on the y axis of your chart.
       selectInput(
