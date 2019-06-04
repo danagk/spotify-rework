@@ -74,7 +74,7 @@ server <- function(input, output) {
       layout(
         xaxis = list(title = ""),
         yaxis = list(title = ""),
-        title = paste0(feature, " by Country"),
+        title = paste0("Average", feature, " in Popular Music by Country"),
         margin = list(b = 50, t = 60)
       )
     country_map
