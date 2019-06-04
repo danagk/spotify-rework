@@ -28,8 +28,6 @@ server <- function(input, output) {
   })
   # Next Chart
   output$histogram <- renderPlotly({
-    plot_ly(songs_df, x = ~input$feature) %>%
-      add_histogram()
     filtered <- songs_df %>%
       select(genre, input$feature)
     histogram_chart <- melt(filtered, id.vars = input$feature) %>%
