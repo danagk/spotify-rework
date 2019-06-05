@@ -10,22 +10,25 @@ select_bar_country <- colnames(country_data[, c(6:7, 12:16)])
 
 # Create overview page content
 overview <- fluidPage(
-  h1(strong("A Spotify Exploration")),
-  p("The purpose of the project is to explore and analyze the trends in music
-  found from Spotify data. The questions that structured our project include,",
-  em("how audio features such as valence or danceability vary across genres,
-  the popularity across genres, and how audio features of popular music differs
-  between different countries"), ". The source of our data comes from",
-  a(href = "https://cran.r-project.org/web/packages/spotifyr/spotifyr.pdf",
-      "the Spotifyr package in R"), " and ",
-  a(href = "https://developer.spotify.com/documentation/web-api/",
-      "the Spotify Web API."),
-  "Our interactive pages include a Bar Plot, a Histogram,
-   and a Map that display musical features
-   by genre or country."),
+  includeCSS("style.CSS"),
+  tags$h2("A Spotify Exploration"),
+  tags$p("The purpose of the project is to explore and analyze the
+        trends in music found from Spotify data. The questions
+        that structured our project include how audio features
+        such as valence or danceability vary across genres, the
+        popularity across genres, and how audio features of popular music
+        differs between different countries. The source of our data comes from
+        the Spotifyr package in R and the Spotify Web API. Our interactive web
+        pages include a Bar Plot, a Histogram, and a Map that display musical
+        features by genre or country. Our interactive pages include a Bar Plot,
+        a Histogram, and a Map that display musical features by genre
+         or country."),
+  tags$h3("Defining our Variables"),
+  tags$p("Popularity is defined by the amount of listens on the Spotify music
+        charts. Valence and energy can be described as whether the music
+        may make someone feel happy and positive or sad and negative."),
   # Retrieved from Pinterest
-  img("", src = paste0("https://i.pinimg.com/474x/c7/59/2d/",
-     "c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg"))
+  HTML('<img src = "https://i.pinimg.com/474x/c7/59/2d/c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg">')
   )
 
 # Define overview panel
@@ -104,22 +107,40 @@ page_three <- tabPanel(
   )
 )
 
+# Summary content
 summary <- fluidPage(
-  h1(strong("Summary Takeaways")),
-  p("Summary from pages")
-    )
+  h2("Summary Takeaways"),
+  h1("First Takeaway"),
+  h1("Second Takeaway"),
+  h1("Third Takeaway"),
+  p("The following table shows the average danceability, energy, valence,
+    acousticness, and tempo based on music genre. The table is ordered by
+    which genre has the highest average popularity ratings on a scale from
+    0-100. Pop music is highest on the charts. Ska music has the fastest
+    average tempo. Reggae music has the highest average valence. Ska music
+    has the highest average energy. Opera music is the most acoustic on
+    average. Reggaeton music has the highest average danceability."),
+  p("Interestingly, the table shows trends across genres such as when
+    popularity of a genre decreases acousticness tends to increase. For
+    example, opera and classical music are two of the least popular genres
+    and have average acousticness of 0.95 and 0.87, respectively. In
+    addition, reggaeton and reggae are not popular genres yet have the
+    highest levels of danceability at 0.73 and 0.7, respectively."),
+  tableOutput("table")
+  )
 
+# Define Summary Panel
 summary_panel <- tabPanel(
-  "Summary Information",
+  "Summary Takeaways",
   summary
 )
 
 # Pass each page to a multi-page layout (`navbarPage`)
-ui <- navbarPage(
-  "Musical Genre Exploration", # application title
-  overview_panel,
-  page_one,         # include the first page content
-  page_two,
-  page_three,
-  summary_panel
+ui <- navbarPage(theme = "style.CSS",
+                 tags$header("Musical Genre Exploration"), # application title
+                 overview_panel,
+                 page_one,         # include the first page content
+                 page_two,
+                 page_three,
+                 summary_panel
 )

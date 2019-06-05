@@ -75,4 +75,23 @@ server <- function(input, output) {
       )
     country_map
   })
+  output$table <- renderTable({
+    songs_table <- songs_df %>%
+      group_by(genre) %>%
+      summarize(mean_danceability = round(mean(danceability), 2),
+                mean_energy = round(mean(energy), 2),
+                mean_valence = round(mean(valence), 2),
+                mean_acousticness = round(mean(acousticness), 2),
+                mean_tempo = round(mean(tempo), 2),
+                mean_popularity = round(mean(popularity), 0)) %>%
+      arrange(-mean_popularity)
+    songs_table <- rename(songs_table, "Genre" = genre)
+    songs_table <- rename(songs_table, "Average Danceability" = mean_danceability)
+    songs_table <- rename(songs_table, "Average Energy" = mean_energy)
+    songs_table <- rename(songs_table, "Average Valence" = mean_valence)
+    songs_table <- rename(songs_table, "Average Acousticness" = mean_acousticness)
+    songs_table <- rename(songs_table, "Average Tempo" = mean_tempo)
+    songs_table <- rename(songs_table, "Popularity Rating" = mean_popularity)
+    songs_table
+  })
 }
