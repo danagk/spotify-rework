@@ -1,8 +1,8 @@
 # Load libraries so they are available
 library("shiny")
 library("dplyr")
-source("../data/dataframe.R")
-source("../data/country_data.R")
+source("./data/dataframe.R")
+source("./data/country_data.R")
 source("app_ui.R")
 source("app_server.R")
 
