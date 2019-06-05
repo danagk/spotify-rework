@@ -28,7 +28,10 @@ overview <- fluidPage(
         charts. Valence and energy can be described as whether the music
         may make someone feel happy and positive or sad and negative."),
   # Retrieved from Pinterest
-  HTML('<img src = "https://i.pinimg.com/474x/c7/59/2d/c7592d4968db39641f6a530d17c40d26--streaming-music-musica-streaming.jpg">')
+  img(src = paste0(
+    "https://i.pinimg.com/474x/c7/59/2d/",
+    "c7592d4968db39641f6a530d17c40d26--streaming-",
+    "music-musica-streaming.jpg"))
   )
 
 # Define overview panel
@@ -111,9 +114,32 @@ page_three <- tabPanel(
 summary <- fluidPage(
   h2("Summary Takeaways"),
   h1("First Takeaway"),
+  p("In the histogram, it can be noted that the graphs between
+    different genres overlap quite a bit for each musical feature.
+    For popularity, there were 1000 counts for the Classical
+    genre with zero popularity, unlike all other genres. The
+    broader implications of this piece of data is that most music
+    have very similar musical features with the exception of slower
+    or quieter genres, such as Classical, which has an impact on
+    their popularity in Spotify charts."),
   h1("Second Takeaway"),
+  p("In the map, you can see the differences of popular songs
+    between North American countries and South American
+    countries by the musical features. It is interesting to note
+    that South American countries prefer their music to be highly
+    positive, while valence and energy gets lower or less positive
+    as you go futher North. As seen in the maps below, the darker
+    blue correlates to lower valence and energy and the lighter
+    blue correlates to higher valence and energy. The broader
+    implications of this is that themes in music between different
+    cultures are apparent through this distinctive comparison of
+    positivity and negativity. This could be an effect of mass
+    media's influence on societies of different cultures."),
+  HTML('<img src = "https://i.ibb.co/HdFhY20/energy-map.png">'),
+  HTML('<img src = "https://i.ibb.co/Qm1FZCD/valence-map.png">'),
   h1("Third Takeaway"),
-  p("The following table shows the average danceability, energy, valence,
+  p("In the bar plot, averages of different musical features are shown by
+    genre. The following table shows the average danceability, energy, valence,
     acousticness, and tempo based on music genre. The table is ordered by
     which genre has the highest average popularity ratings on a scale from
     0-100. Pop music is highest on the charts. Ska music has the fastest
@@ -125,7 +151,10 @@ summary <- fluidPage(
     example, opera and classical music are two of the least popular genres
     and have average acousticness of 0.95 and 0.87, respectively. In
     addition, reggaeton and reggae are not popular genres yet have the
-    highest levels of danceability at 0.73 and 0.7, respectively."),
+    highest levels of danceability at 0.73 and 0.7, respectively. The
+    broader implications of this insight may be telling of what Spotify
+    listeners value in their music tastes and features and what is not
+    valued."),
   tableOutput("table")
   )
 
