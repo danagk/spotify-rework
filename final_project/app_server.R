@@ -13,18 +13,20 @@ server <- function(input, output) {
       # Create bar chart with genre on the y axis and valence on the x axis
       # Order the valence from greatest to least
       geom_bar(aes_string(
-                x = "genre",
-                y = input$y_var_bar),
-               # take the mean of the valence for
-               # each genre
-                stat = "summary", fun.y = "mean",
-               fill = "#00CCCC") +
+        x = "genre",
+        y = input$y_var_bar
+      ),
+      # take the mean of the valence for
+      # each genre
+      stat = "summary", fun.y = "mean",
+      fill = "#00CCCC"
+      ) +
       # title/axis labels
       ggtitle(paste0("Average ", input$y_var_bar, " per Genre")) +
       xlab("Genre") +
       ylab(paste0("Average ", input$y_var_bar)) +
       theme(axis.text.x = element_text(angle = 60, hjust = 1))
-  genre_bar_chart
+    genre_bar_chart
   })
   # Next Chart
   output$histogram <- renderPlotly({
@@ -32,14 +34,18 @@ server <- function(input, output) {
       select(genre, input$feature)
     histogram_chart <- melt(filtered, id.vars = input$feature) %>%
       plot_ly(alpha = 0.5, colors = "Set2") %>%
-      add_histogram(x = ~get(input$feature),
-                    type = "histogram",
-                    name = ~value,
-                    color = ~value) %>%
-      layout(title = "Histogram of Features in each Genre",
-             xaxis = list(title = "Feature"),
-             yaxis = list(title = "Count"),
-             barmode = "overlay")
+      add_histogram(
+        x = ~ get(input$feature),
+        type = "histogram",
+        name = ~value,
+        color = ~value
+      ) %>%
+      layout(
+        title = "Histogram of Features in each Genre",
+        xaxis = list(title = "Feature"),
+        yaxis = list(title = "Count"),
+        barmode = "overlay"
+      )
     histogram_chart
   })
   # create and render an interactive map of pop music tastes in each country
@@ -56,8 +62,10 @@ server <- function(input, output) {
       rename(country = region) %>%
       merge(by_country, by = "country")
     # create map shaded according to selected feature
-    country_map <- ggplot(country_shape, aes(text = paste0("country: ", country,
-                           "\n", input$map_feature, ": ", feature))) +
+    country_map <- ggplot(country_shape, aes(text = paste0(
+      "country: ", country,
+      "\n", input$map_feature, ": ", feature
+    ))) +
       geom_polygon(
         mapping = aes(x = long, y = lat, group = group, fill = feature),
         color = "white",
@@ -78,20 +86,23 @@ server <- function(input, output) {
   output$table <- renderTable({
     songs_table <- songs_df %>%
       group_by(genre) %>%
-      summarize(mean_danceability = round(mean(danceability), 2),
-                mean_energy = round(mean(energy), 2),
-                mean_valence = round(mean(valence), 2),
-                mean_acousticness = round(mean(acousticness), 2),
-                mean_tempo = round(mean(tempo), 2),
-                mean_popularity = round(mean(popularity), 0)) %>%
+      summarize(
+        mean_danceability = round(mean(danceability), 2),
+        mean_energy = round(mean(energy), 2),
+        mean_valence = round(mean(valence), 2),
+        mean_acousticness = round(mean(acousticness), 2),
+        mean_tempo = round(mean(tempo), 2),
+        mean_popularity = round(mean(popularity), 0)
+      ) %>%
       arrange(-mean_popularity)
-    songs_table <- rename(songs_table, "Genre" = genre)
-    songs_table <- rename(songs_table, "Average Danceability" = mean_danceability)
-    songs_table <- rename(songs_table, "Average Energy" = mean_energy)
-    songs_table <- rename(songs_table, "Average Valence" = mean_valence)
-    songs_table <- rename(songs_table, "Average Acousticness" = mean_acousticness)
-    songs_table <- rename(songs_table, "Average Tempo" = mean_tempo)
-    songs_table <- rename(songs_table, "Popularity Rating" = mean_popularity)
+    songs_table <- songs_table %>%
+      rename("Genre" = genre) %>%
+      rename("Average Danceability" = mean_danceability) %>%
+      rename("Average Energy" = mean_energy) %>%
+      rename("Average Valence" = mean_valence) %>%
+      rename("Average Acousticness" = mean_acousticness) %>%
+      rename("Average Tempo" = mean_tempo) %>%
+      rename("Popularity Rating" = mean_popularity)
     songs_table
   })
 }
