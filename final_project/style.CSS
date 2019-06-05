@@ -1,0 +1,35 @@
+# style.CSS
+p {
+  font-family: sans-serif;
+  font-size: 15px;
+}
+
+h1 {
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #7ea7ea;
+}
+
+h2 {
+  font-family: sans-serif;
+  color: #7ea7ea;
+}
+
+h3 {
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+  color: black;
+}
+
+header {
+  font-family: arial;
+  font-size: 25px;
+  font-weight: bold;
+  color: #1a3e7a;
+}
+
+body {
+  background-color: #efede1;
+}
