@@ -3,6 +3,8 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 library(reshape2)
+library(maps)
+library(mapproj)
 
 # Create a shiny server
 server <- function(input, output) {
